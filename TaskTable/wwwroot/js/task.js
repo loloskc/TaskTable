@@ -1,33 +1,46 @@
 ﻿
 const url = 'api/mytasks';
 const urlStatus = 'api/status';
+const statusMap = new Map();
 
 let tasks = [];
-var statusMap = new Map();
+let status = [];
+
+
 
 function getItems() {
 
-    fetch(urlStatus)
-        .then(response => response.json())
-        .then(data => getStatus(data))
-        .catch(error => console.error('', error));
-
+    console.log(statusMap);
     fetch(url)
         .then(response => response.json())
         .then(data => _displayItems(data))
         .catch(error => console.error('Unable to get items.', error));
 }
 
-function getStatus(data) {
+function getStatus(callback) {
+    
+    fetch(urlStatus)
+        .then(response => response.json())
+        .then((data) => {
+            callback(data);
+        })
+        .catch(error => console.error('', error));
+}
+
+function getName(data) {
     data.forEach(item => {
         statusMap.set(item.statusId, item.statusName);
     })
+    getItems();
+
 }
+
+
 
 function _displayItems(data) {
     const tBody = document.getElementById('todos');
     tBody.innerHTML = '';
-
+    
     data.forEach(item => {
         let tr = tBody.insertRow();
 
@@ -44,6 +57,8 @@ function _displayItems(data) {
         tdDis.appendChild(disc);
 
         let tdStatus = tr.insertCell(3);
+        console.log(statusMap.size);
+        console.log(status)
         let status1 = document.createTextNode(statusMap.get(item.statusId)); // idk sometimes "undefined"
         tdStatus.appendChild(status1);
 
