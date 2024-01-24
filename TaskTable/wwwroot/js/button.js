@@ -53,8 +53,26 @@ function loadOptionAdd() {
     })
 
 }
-    let flag = false;
-function choiceLine() {
-    
 
+
+function choiceLine(id) {
+
+    const line = document.getElementById(id);
+    line.lastChild.lastChild.checked = true;
+    line.style.backgroundColor = 'PaleTurquoise';
+    if (chLine != line&&chLine.id!=null) resetLine(chLine.id)
+    chLine = line;
+
+    console.log(chLine.id)
 }
+
+function resetLine(id) {    
+    const line = document.getElementById(id);
+    line.style.backgroundColor = 'white';
+}
+
+let chLine = {
+    id: null
+}
+
+

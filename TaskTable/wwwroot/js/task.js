@@ -43,8 +43,15 @@ function _displayItems(data) {
     data.forEach(item => {
         let tr = tBody.insertRow();
         tr.id = item.id;
+        tr.onclick = (event) => {
+            choiceLine(item.id);
+        }
         let tdID = tr.insertCell(0);
         let id = document.createTextNode(item.id);
+
+
+
+        
         tdID.appendChild(id)
 
         let tdName = tr.insertCell(1);
@@ -59,6 +66,11 @@ function _displayItems(data) {
         let status1 = document.createTextNode(statusMap.get(item.statusId)); // idk sometimes "undefined"
         tdStatus.appendChild(status1);
 
+        let tdChoice = tr.insertCell(4);
+        let radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'task';
+        tdChoice.appendChild(radio);
         
     });
 
