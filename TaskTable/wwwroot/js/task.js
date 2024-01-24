@@ -3,13 +3,13 @@ const url = 'api/mytasks';
 const urlStatus = 'api/status';
 
 let tasks = [];
-let statusName = [];
+var statusMap = new Map();
 
 function getItems() {
 
     fetch(urlStatus)
         .then(response => response.json())
-        .then(data => getNameStatus(data))
+        .then(data => getStatus(data))
         .catch(error => console.error('', error));
 
     fetch(url)
@@ -18,14 +18,10 @@ function getItems() {
         .catch(error => console.error('Unable to get items.', error));
 }
 
-function getNameStatus(data) {
-    data.forEach(item => {
-        statusName[item.statusId] = item.statusName;
-    })
-
-}
 function getStatus(data) {
-    status = data;
+    data.forEach(item => {
+        statusMap.set(item.statusId, item.statusName);
+    })
 }
 
 function _displayItems(data) {
@@ -48,7 +44,7 @@ function _displayItems(data) {
         tdDis.appendChild(disc);
 
         let tdStatus = tr.insertCell(3);
-        let status1 = document.createTextNode(statusName[item.statusId]);
+        let status1 = document.createTextNode(statusMap.get(item.statusId)); // idk sometimes "undefined"
         tdStatus.appendChild(status1);
 
         

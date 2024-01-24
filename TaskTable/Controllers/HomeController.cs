@@ -22,7 +22,6 @@ namespace TaskTable.Controllers
 
         public IActionResult Index()
         {
-            
             return View();
         }
 
