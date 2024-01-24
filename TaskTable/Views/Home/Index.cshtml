@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<MyTask>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,19 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<table id="my-task-table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+    <tbody id="todos">
+       
+    </tbody>
+</table>
+
+
+<script src="~/js/task.js"></script>
+<script type="text/javascript">getItems();</script>

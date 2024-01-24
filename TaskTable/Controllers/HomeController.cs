@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskTable.Models;
+using TaskTable.Data;
+using TaskTable.Controllers;
 
 namespace TaskTable.Controllers
 {
@@ -20,6 +22,7 @@ namespace TaskTable.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
