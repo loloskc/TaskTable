@@ -10,7 +10,6 @@ let status = [];
 
 function getItems() {
 
-    console.log(statusMap);
     fetch(url)
         .then(response => response.json())
         .then(data => _displayItems(data))
@@ -43,7 +42,7 @@ function _displayItems(data) {
     
     data.forEach(item => {
         let tr = tBody.insertRow();
-
+        tr.id = item.id;
         let tdID = tr.insertCell(0);
         let id = document.createTextNode(item.id);
         tdID.appendChild(id)
@@ -57,8 +56,6 @@ function _displayItems(data) {
         tdDis.appendChild(disc);
 
         let tdStatus = tr.insertCell(3);
-        console.log(statusMap.size);
-        console.log(status)
         let status1 = document.createTextNode(statusMap.get(item.statusId)); // idk sometimes "undefined"
         tdStatus.appendChild(status1);
 

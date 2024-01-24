@@ -22,3 +22,13 @@ td {
     border: 1px solid;
     padding: 5px;
 }
+
+#addTask{
+    display:none;
+}
+
+#buttons-crud{
+    text-align:right;
+    width:auto;
+    margin-bottom: 10px;
+}

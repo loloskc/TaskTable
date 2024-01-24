@@ -4,6 +4,24 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div id="buttons-crud">
+    <button class="btn btn-success rounded-pill px-3" onclick="showAddForm()">Add</button>
+    <button class="btn btn-warning rounded-pill px-3">Edit</button>
+    <button class="btn btn-danger rounded-pill px-3">Delete</button>
+</div>
+
+
+<div id="addTask">
+    <h3>Add Task</h3>
+    <input type="text" id="add-name" placeholder="Name" />
+    <input type="text" id="add-desc" placeholder="Description" />
+    <select id="status-select">
+        <option value="0"></option>
+    </select>
+    <button class="btn btn-primary d-inline-flex align-items-center" onclick="addTask()" >Add</button>
+</div>
+
+
 <table id="my-task-table" width="100%">
     <tr>
         <th>ID</th>
@@ -17,6 +35,7 @@
 
 
 <script src="~/js/task.js"></script>
+<script src="~/js/button.js"></script>
 <script type="text/javascript">
     getStatus(getName);
   //  getItems();
