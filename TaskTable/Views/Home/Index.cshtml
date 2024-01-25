@@ -5,9 +5,9 @@
 }
 
 <div id="buttons-crud">
-    <button class="btn btn-success rounded-pill px-3" onclick="showAddForm()">Add</button>
-    <button class="btn btn-warning rounded-pill px-3">Edit</button>
-    <button class="btn btn-danger rounded-pill px-3">Delete</button>
+    <button class="btn btn-success rounded-pill px-3" onclick="showAddForm('status-select')">Add</button>
+    <button class="btn btn-warning rounded-pill px-3" onclick="showEditForm('status-select-edit')">Edit</button>
+    <button class="btn btn-danger rounded-pill px-3" onclick="deleteItem()">Delete</button>
 </div>
 
 
@@ -21,6 +21,16 @@
     <button class="btn btn-primary d-inline-flex align-items-center" onclick="addTask()" >Add</button>
 </div>
 
+<div id="editTask">
+    <h3>Edit Task</h3>
+    <input type="hidden" id="edit-id" />
+    <input type="text" id="edit-name" placeholder="Name" />
+    <input type="text" id="edit-desc" placeholder="Description" />
+    <select id="status-select-edit">
+        <option value="0"></option>
+    </select>
+    <button class="btn btn-primary d-inline-flex align-items-center" onclick="updateItem()">Save</button>
+</div>
 
 <table id="my-task-table" width="100%">
     <tr>

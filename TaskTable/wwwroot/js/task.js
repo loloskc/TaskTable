@@ -75,5 +75,46 @@ function _displayItems(data) {
     });
 
     tasks = data;
+}
 
+
+function deleteItem() {
+    let id = chLine.id;
+    if (chLine.id != null) {
+        chLine = {
+            id: null
+        }
+        fetch(`${url}/${id}`, {
+            method: 'DELETE'
+        })
+            .then(() => getItems())
+            .catch(error => console.error('Unable to delete item.', error));
+    }
+    else {
+        alert('Данные не выбраны');
+    }
+}
+
+function updateItem() {
+   
+    const Task = {
+        id: Number(document.getElementById('edit-id').value),
+        name: document.getElementById('edit-name').value,
+        description: document.getElementById('edit-desc').value,
+        statusId: Number(document.getElementById('status-select-edit').value),
+        status:null
+    }
+    console.log(Task);
+
+    fetch(`${url}/${Number(Task.id)}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Task)
+    })
+        .then(() => getItems())
+        .catch(error => console.error('Unable to update item', error));
+    closeEditForm();
 }

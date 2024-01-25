@@ -32,3 +32,7 @@ td {
     width:auto;
     margin-bottom: 10px;
 }
+
+#editTask {
+    display: none;
+}

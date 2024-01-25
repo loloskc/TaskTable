@@ -87,7 +87,7 @@ namespace TaskTable.Controllers
         }
 
         // DELETE: api/MyTasks/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] 
         public async Task<ActionResult<MyTask>> DeleteMyTask(int id)
         {
             var myTask = await _context.MyTasks.FindAsync(id);

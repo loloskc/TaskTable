@@ -1,13 +1,35 @@
 ﻿
 
-function showAddForm() {
+function showAddForm(id) {
     document.getElementById('addTask').style.display = 'block';
-    loadOptionAdd();
+    loadOptionAdd(id);
 }
 
 function closeAddForm() {
     document.getElementById('addTask').style.display = 'none';
 }
+
+function showEditForm(id) {
+    if (chLine.id != null) {
+        document.getElementById('editTask').style.display = 'block';
+        loadOptionAdd(id);
+        const task = tasks.find(item => item.id === Number(chLine.id));
+        console.log(task);
+        document.getElementById('edit-id').value = task.id;
+        document.getElementById('edit-name').value = task.name;
+        document.getElementById('edit-desc').value = task.description;
+        document.getElementById('status-select-edit').value = task.statusId;
+    }
+    else {
+        alert('Данные не выбраны')
+    }
+}
+
+function closeEditForm() {
+    document.getElementById('editTask').style.display = 'none';
+}
+
+
 
 function addTask() {
 
@@ -39,8 +61,8 @@ function addTask() {
    
 }
 
-function loadOptionAdd() {
-    var select = document.getElementById('status-select')
+function loadOptionAdd(id) {
+    var select = document.getElementById(id)
 
     while (select.options.length > 0) {
         select.options.remove(0);
