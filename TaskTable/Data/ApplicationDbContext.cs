@@ -15,6 +15,8 @@ namespace TaskTable.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.EnsureCreated();
+            UploadDefaultData upseed = new UploadDefaultData(this);
+            upseed.UploadStatusName();
         }
     }
 }
