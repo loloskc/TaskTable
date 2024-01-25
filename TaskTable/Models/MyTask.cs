@@ -16,8 +16,6 @@ namespace TaskTable.Models
         [ForeignKey("Status")]
         public int StatusId { get; set; }
 
-        public Status Status { get; set; }
-
 
     }
 }

@@ -102,7 +102,6 @@ function updateItem() {
         name: document.getElementById('edit-name').value,
         description: document.getElementById('edit-desc').value,
         statusId: Number(document.getElementById('status-select-edit').value),
-        status:null
     }
     console.log(Task);
 

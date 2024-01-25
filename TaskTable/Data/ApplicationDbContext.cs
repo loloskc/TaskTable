@@ -15,8 +15,16 @@ namespace TaskTable.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.EnsureCreated();
-            UploadDefaultData upseed = new UploadDefaultData(this);
-            upseed.UploadStatusName();
+            
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Status>().HasData(
+                new Status { StatusId = 1, StatusName = "Создана" },
+                new Status { StatusId = 2, StatusName = "В работе" },
+                new Status { StatusId = 3, StatusName = "Завершена" }
+                );
         }
     }
 }
