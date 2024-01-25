@@ -39,25 +39,27 @@ function addTask() {
         statusId: Number(document.getElementById('status-select').value)
     }
 
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Task)
-    })
-        .then(response => response.json())
-        .then(() => {
-            getItems();
-            document.getElementById('add-name').value = '';
-            document.getElementById('add-desc').value = '';
-            document.getElementById('status-select').value = 1;
-            closeAddForm();
-
+    if (Task.name.length != 0 && Task.description.length != 0) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Task)
         })
-        .catch(error => console.error('Unable to add item.', error));
+            .then(response => response.json())
+            .then(() => {
+                getItems();
+                document.getElementById('add-name').value = '';
+                document.getElementById('add-desc').value = '';
+                document.getElementById('status-select').value = 1;
+                closeAddForm();
+
+            })
+            .catch(error => console.error('Unable to add item.', error));
+    }
+    else alert('Заполните все поля');
    
 }
 

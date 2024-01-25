@@ -96,7 +96,7 @@ function deleteItem() {
 }
 
 function updateItem() {
-   
+
     const Task = {
         id: Number(document.getElementById('edit-id').value),
         name: document.getElementById('edit-name').value,
@@ -105,15 +105,19 @@ function updateItem() {
     }
     console.log(Task);
 
-    fetch(`${url}/${Number(Task.id)}`, {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Task)
-    })
-        .then(() => getItems())
-        .catch(error => console.error('Unable to update item', error));
-    closeEditForm();
+    if (Task.name.length != 0 && Task.description.length != 0) {
+        fetch(`${url}/${Number(Task.id)}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Task)
+        })
+            .then(() => getItems())
+            .catch(error => console.error('Unable to update item', error));
+        closeEditForm();
+    }
+    else alert('Заполните все данные');
+   
 }
